@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  http://www.journaldev.com/7128/log4j2-example-tutorial-configuration-levels-appenders -->
+<Configuration>
+  <Appenders>
+    <Console name="Console">
+      <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %l,%L - %msg%n"/>
+    </Console>
+    <RollingFile name="RollingFile" fileName="/tmp/log/acortador-url.log"
+                 filePattern="/tmp/log/acortador-url-%d{yyyy-MM-dd_HH-mm-ss}.log">
+      <PatternLayout>
+        <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %l,%L - %msg%n</Pattern>
+      </PatternLayout>
+      <Policies>
+       <!--  <TimeBasedTriggeringPolicy/> -->
+        <SizeBasedTriggeringPolicy size="2 MB"/>
+      </Policies>
+    </RollingFile>
+  </Appenders>
+  <Loggers>
+    <Root level="INFO">
+      <AppenderRef ref="Console"/>
+      <AppenderRef ref="RollingFile"/>
+    </Root>
+   <!-- Para añadir subdirectorios, pero como está el raiz no es necesario <logger name="dcc" level="DEBUG" additivity="false">
+  		<AppenderRef ref="Console"/>
+  	</logger>   -->
+  </Loggers>
+</Configuration>
